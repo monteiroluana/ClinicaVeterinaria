@@ -25,6 +25,8 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
         lblTelefone = new javax.swing.JLabel();
         txtTelefone = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
+        lblCpf = new javax.swing.JLabel();
+        txtCpf = new javax.swing.JTextField();
 
         setBorder(null);
         setClosable(true);
@@ -46,6 +48,8 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
             }
         });
 
+        lblCpf.setText("CPF:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -54,30 +58,39 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNome)
-                            .addComponent(lblTelefone))
-                        .addGap(7, 7, 7)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblEndereco)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 55, Short.MAX_VALUE))
+                        .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblCpf)
+                                    .addComponent(lblNome)))
+                            .addComponent(lblTelefone, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtNome, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTelefone, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCpf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 50, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCadastrar)
-                .addGap(118, 118, 118))
+                .addGap(119, 119, 119))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNome))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCpf))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -88,7 +101,7 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
                     .addComponent(lblTelefone))
                 .addGap(18, 18, 18)
                 .addComponent(btnCadastrar)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -109,6 +122,7 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
         Cliente cliente = new Cliente();
 
         cliente.setNome(txtNome.getText());
+        cliente.setCpf(txtCpf.getText());
         cliente.setEndereco(txtEndereco.getText());
         cliente.setTelefone(txtTelefone.getText());
 
@@ -144,6 +158,7 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
 
     public void limparTela() {
         txtNome.setText("");
+        txtCpf.setText("");
         txtEndereco.setText("");
         txtTelefone.setText("");
     }
@@ -151,9 +166,11 @@ public class CadastrarCliente extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblEndereco;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblTelefone;
+    private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtTelefone;

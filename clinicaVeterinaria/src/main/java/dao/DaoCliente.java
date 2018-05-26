@@ -12,7 +12,7 @@ import model.Cliente;
 public class DaoCliente {
 
     public void inserir(Cliente cliente) throws SQLException, ClassNotFoundException {
-        String sql = "INSERT INTO CLIENTE(nome, endereco, telefone, enable) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO CLIENTE(nome, cpf, endereco, telefone, enable) VALUES (?,?,?,?,?)";
         Connection conn = null;
 
         try {
@@ -20,9 +20,10 @@ public class DaoCliente {
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, cliente.getNome());
-            stmt.setString(2, cliente.getEndereco());
-            stmt.setString(3, cliente.getTelefone());
-            stmt.setBoolean(4, true);
+            stmt.setString(2, cliente.getCpf());
+            stmt.setString(3, cliente.getEndereco());
+            stmt.setString(4, cliente.getTelefone());
+            stmt.setBoolean(5, true);
 
             stmt.execute();
 
@@ -34,31 +35,30 @@ public class DaoCliente {
         }
     }
 
-    //lista todos os clientes ou por nome (ou parte do nome)
+    //lista todos os clientes ou por nome (ou parte do nome) ou por cpf
     public List<Cliente> listar(String busca) throws ClassNotFoundException, SQLException {
         List<Cliente> lista = new ArrayList<Cliente>();
 
-        String sql = "SELECT * FROM CLIENTE WHERE UPPER(nome) LIKE UPPER(?) AND enable=?";
+        String sql = "SELECT * FROM CLIENTE WHERE (UPPER(nome) LIKE UPPER(?) "
+                + "OR UPPER(cpf) LIKE UPPER(?)) AND enable=?";
         Connection conn = null;
 
         try {
             conn = Conexao.obterConexao();
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, "%" + busca + "%");
-            stmt.setBoolean(2, true);
+            stmt.setString(2, busca);
+            stmt.setBoolean(3, true);
 
             //Armazenará os resultados do banco de dados
             ResultSet resultados = stmt.executeQuery();
 
             while (resultados.next()) {
-//                Integer id = resultados.getInt("idCliente");
-//                String nome = resultados.getString("nome");
-//                String endereco = resultados.getString("endereco");
-//                String telefone = resultados.getString("telefone");
 
                 Cliente cliente = new Cliente();
                 cliente.setIdCliente(resultados.getInt("idCliente"));
                 cliente.setNome(resultados.getString("nome"));
+                cliente.setCpf(resultados.getString("cpf"));
                 cliente.setEndereco(resultados.getString("endereco"));
                 cliente.setTelefone(resultados.getString("telefone"));
                 lista.add(cliente);
@@ -95,7 +95,7 @@ public class DaoCliente {
     }
     
     public void editar (Cliente cliente) throws SQLException, ClassNotFoundException {
-        String sql = "UPDATE CLIENTE SET nome=?, endereco=?, telefone=? WHERE idCliente=?";
+        String sql = "UPDATE CLIENTE SET nome=?, cpf=?, endereco=?, telefone=? WHERE idCliente=?";
         Connection conn = null;
 
         try {
@@ -103,9 +103,10 @@ public class DaoCliente {
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, cliente.getNome());
-            stmt.setString(2, cliente.getEndereco());
-            stmt.setString(3, cliente.getTelefone());
-            stmt.setInt(4, cliente.getIdCliente());
+            stmt.setString(2, cliente.getCpf());
+            stmt.setString(3, cliente.getEndereco());
+            stmt.setString(4, cliente.getTelefone());
+            stmt.setInt(5, cliente.getIdCliente());
 
             stmt.execute();
 
@@ -140,6 +141,7 @@ public class DaoCliente {
                 Cliente cliente = new Cliente();
                 cliente.setIdCliente(id);
                 cliente.setNome(resultado.getString("nome"));
+                cliente.setCpf(resultado.getString("cpf"));
                 cliente.setEndereco(resultado.getString("endereco"));
                 cliente.setTelefone(resultado.getString("telefone"));               
                 
@@ -156,4 +158,38 @@ public class DaoCliente {
 
         return null;
     }
+    
+    public Cliente buscarPorCpf(String cpf) throws ClassNotFoundException, SQLException {
+
+        String sql = "SELECT * FROM CLIENTE WHERE cpf=? AND enable=?";
+
+        Cliente cli = null;
+        Connection conn;
+
+        try {
+            conn = Conexao.obterConexao();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, cpf);
+            stmt.setBoolean(2, true);
+            ResultSet res = stmt.executeQuery();
+
+            if (res.next()) {
+                cli = new Cliente();
+
+                cli.setIdCliente(res.getInt("idCliente"));                
+                cli.setNome(res.getString("nome"));
+                cli.setCpf(res.getString("cpf"));
+                cli.setEndereco(res.getString("endereco"));
+                cli.setTelefone(res.getString("telefone"));
+                
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return cli;
+    }
+    
 }

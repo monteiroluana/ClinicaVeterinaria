@@ -5,6 +5,7 @@ USE dbClinicaVet;
 CREATE TABLE cliente(
 	idCliente     INTEGER NOT NULL AUTO_INCREMENT,
 	nome          VARCHAR(255),
+        cpf           VARCHAR(11),
         endereco      VARCHAR(255),
 	telefone      VARCHAR(30),
         enable        BOOLEAN,	

@@ -4,6 +4,7 @@ public class Cliente {
 
     private Integer idCliente;
     private String nome;
+    private String cpf;
     private String endereco;
     private String telefone;
 
@@ -21,6 +22,14 @@ public class Cliente {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getEndereco() {
