@@ -19,6 +19,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private CadastrarAnimal animalAdd = null;
     private ConsultarAnimal animalConsult = null;
+    private EditarAnimal animalEdit = null;
 
     private CadastroCirurgiao cirurgiaoAdd = null;
 
@@ -68,6 +69,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public void setAnimalConsult(ConsultarAnimal animalConsult) {
         this.animalConsult = animalConsult;
+    }
+    
+    public EditarAnimal getAnimalEdit() {
+        return animalEdit;
+    }
+
+    public void setAnimalEdit(EditarAnimal animalEdit) {
+        this.animalEdit = animalEdit;
     }
 
     public CadastroCirurgiao getCirurgiaoAdd() {

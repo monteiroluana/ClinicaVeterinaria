@@ -42,6 +42,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
         setBorder(null);
         setClosable(true);
         setIconifiable(true);
+        setTitle("Consultar Clientes");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -125,18 +126,18 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPesquisa)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditar)
                     .addComponent(btnExcluir))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -224,8 +225,6 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
                 
                 //Obtém o valor do ID da coluna "ID" da tabela de resultados
                 Integer id = (Integer) tableConsultaCliente.getValueAt(row, 0);
-                
-                System.out.println("id cliente " +id);
 
                 //com o ID da coluna, obtem o cliente
                 Cliente cliente = daoCliente.obter(id);

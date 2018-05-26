@@ -93,8 +93,8 @@ public class DaoCliente {
             conn.close();
         }
     }
-    
-    public void editar (Cliente cliente) throws SQLException, ClassNotFoundException {
+
+    public void editar(Cliente cliente) throws SQLException, ClassNotFoundException {
         String sql = "UPDATE CLIENTE SET nome=?, cpf=?, endereco=?, telefone=? WHERE idCliente=?";
         Connection conn = null;
 
@@ -117,7 +117,6 @@ public class DaoCliente {
             conn.close();
         }
     }
-    
 
     public Cliente obter(Integer id) throws SQLException, Exception {
 
@@ -143,8 +142,8 @@ public class DaoCliente {
                 cliente.setNome(resultado.getString("nome"));
                 cliente.setCpf(resultado.getString("cpf"));
                 cliente.setEndereco(resultado.getString("endereco"));
-                cliente.setTelefone(resultado.getString("telefone"));               
-                
+                cliente.setTelefone(resultado.getString("telefone"));
+
                 //Retorna o cliente
                 return cliente;
             }
@@ -158,7 +157,7 @@ public class DaoCliente {
 
         return null;
     }
-    
+
     public Cliente buscarPorCpf(String cpf) throws ClassNotFoundException, SQLException {
 
         String sql = "SELECT * FROM CLIENTE WHERE cpf=? AND enable=?";
@@ -177,12 +176,12 @@ public class DaoCliente {
             if (res.next()) {
                 cli = new Cliente();
 
-                cli.setIdCliente(res.getInt("idCliente"));                
+                cli.setIdCliente(res.getInt("idCliente"));
                 cli.setNome(res.getString("nome"));
                 cli.setCpf(res.getString("cpf"));
                 cli.setEndereco(res.getString("endereco"));
                 cli.setTelefone(res.getString("telefone"));
-                
+
             }
 
         } catch (ClassNotFoundException | SQLException ex) {
@@ -191,5 +190,5 @@ public class DaoCliente {
 
         return cli;
     }
-    
+
 }

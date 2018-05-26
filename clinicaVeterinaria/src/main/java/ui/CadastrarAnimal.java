@@ -69,33 +69,32 @@ public class CadastrarAnimal extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblDonoCpf)
-                    .addComponent(lblIdade)
-                    .addComponent(lblEspecie)
-                    .addComponent(lblSexo)
-                    .addComponent(lblNome))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCadastrar)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jrbMacho)
-                        .addGap(18, 18, 18)
-                        .addComponent(jrbFemea))
-                    .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDonoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(209, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCadastrar)
-                .addGap(51, 51, 51))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblDonoCpf)
+                            .addComponent(lblIdade)
+                            .addComponent(lblEspecie)
+                            .addComponent(lblSexo)
+                            .addComponent(lblNome))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jrbMacho)
+                                .addGap(18, 18, 18)
+                                .addComponent(jrbFemea))
+                            .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDonoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -117,42 +116,62 @@ public class CadastrarAnimal extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDonoCpf)
                     .addComponent(txtDonoCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
                 .addComponent(btnCadastrar)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        Animal animal = new Animal();
-        Cliente cliente = new Cliente();
         DaoAnimal daoAnimal = new DaoAnimal();
         DaoCliente daoCliente = new DaoCliente();
 
+        Animal animal = new Animal();
+        Cliente cliente = new Cliente();
+
+        //busca os dados do cliente atraves do cpf
+        try {
+            cliente = daoCliente.buscarPorCpf(txtDonoCpf.getText());
+
+            if (cliente == null) {
+                JOptionPane.showInternalMessageDialog(this, "Cliente/Dono não encontrado!");
+                return;
+            }
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CadastrarAnimal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastrarAnimal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         animal.setNome(txtNome.getText());
         animal.setEspecie(txtEspecie.getText());
-        animal.setSexo(btnGpSexo.toString());
+        if (jrbMacho.isSelected()) {
+            animal.setSexo("Macho");
+        } else {
+            animal.setSexo("Femea");
+        }
         animal.setIdade(Integer.parseInt(txtIdade.getText()));
-        animal.setIdCliente(Integer.parseInt(txtDonoCpf.getText()));
+        animal.setIdCliente(cliente.getIdCliente());
 
         try {
+            //insere os dados do animal no bd
             daoAnimal.inserir(animal);
-            //Exibe mensagem de Sucesso!
-            JOptionPane.showMessageDialog(rootPane, "Animal inserido com sucesso.",
-                    "Cadastro efetuado!", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (SQLException ex) {
             Logger.getLogger(CadastrarAnimal.class.getName()).log(Level.SEVERE, null, ex);
@@ -169,6 +188,10 @@ public class CadastrarAnimal extends javax.swing.JInternalFrame {
             return;
         }
 
+        //Exibe mensagem de Sucesso!
+        JOptionPane.showMessageDialog(rootPane, "Animal inserido com sucesso.",
+                "Cadastro efetuado!", JOptionPane.INFORMATION_MESSAGE);
+
         limparTela();
 
     }//GEN-LAST:event_btnCadastrarActionPerformed
@@ -178,6 +201,7 @@ public class CadastrarAnimal extends javax.swing.JInternalFrame {
         txtEspecie.setText("");
         txtIdade.setText("");
         txtDonoCpf.setText("");
+        btnGpSexo.clearSelection();
     }
 
 
