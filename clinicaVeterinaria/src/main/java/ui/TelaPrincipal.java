@@ -15,6 +15,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private CadastrarCliente clienteAdd = null;
     private ConsultarCliente clienteConsult = null;
+    private EditarCliente clienteEdit = null;
+    
     private CadastrarAnimal animalAdd = null;
     private ConsultarAnimal animalConsult = null;
 
@@ -38,6 +40,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public void setClienteConsult(ConsultarCliente clienteConsult) {
         this.clienteConsult = clienteConsult;
+    }
+    
+    public EditarCliente getClienteEdit() {
+        return clienteEdit;
+    }
+
+    public void setClienteEdit(EditarCliente clienteEdit) {
+        this.clienteEdit = clienteEdit;
     }
 
     public CadastrarAnimal getAnimalAdd() {
@@ -64,7 +74,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             private Image image;
             {
                 try {
-                    image = ImageIO.read(new File("src/resources/imgs/fundo.jpg"));
+                    image = ImageIO.read(new File("src/resources.imgs/fundo.jpg"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -394,6 +404,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     int xy;
 
     /*Fim Movimentando a tela --------*/
+    
     //Abre um internal frame centralizado na tela
     public void openFrameInCenter(JInternalFrame jif) {
         Dimension desktopSize = desktop.getSize();

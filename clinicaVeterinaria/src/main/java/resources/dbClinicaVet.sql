@@ -7,7 +7,6 @@ CREATE TABLE cliente(
 	nome          VARCHAR(255),
         endereco      VARCHAR(255),
 	telefone      VARCHAR(30),
-        cpf            VARCHAR(11),
         enable        BOOLEAN,	
 
         CONSTRAINT PK_cliente PRIMARY KEY (idCliente)
@@ -44,11 +43,17 @@ CREATE TABLE radiologista(
 	nome              VARCHAR(255),
         endereco          VARCHAR(255),
 	telefone          VARCHAR(30),
-        enable         BOOLEAN,	
+        enable            BOOLEAN,	
 
         CONSTRAINT PK_radiologista PRIMARY KEY (idRadiologista)
 );
 
+
+CREATE TABLE exame(
+	idExame     INTEGER NOT NULL AUTO_INCREMENT,
+	descricao           VARCHAR(255),
+        CONSTRAINT PK_exame PRIMARY KEY (idExame)
+);
 
 CREATE TABLE consulta(
 	idConsulta     INTEGER NOT NULL AUTO_INCREMENT,
@@ -61,14 +66,6 @@ CREATE TABLE consulta(
         FOREIGN KEY(idAnimal) REFERENCES animal(idAnimal),
         FOREIGN KEY(idExame) REFERENCES exame(idExame)
 );
-
-
-CREATE TABLE exame(
-	idExame     INTEGER NOT NULL AUTO_INCREMENT,
-	descricao           VARCHAR(255),
-        CONSTRAINT PK_exame PRIMARY KEY (idExame)
-);
-
 
 
 INSERT INTO CLIENTE (nome, endereco, telefone, enable) VALUES

@@ -6,7 +6,6 @@ public class Cliente {
     private String nome;
     private String endereco;
     private String telefone;
-    private String cpf;
 
     public Integer getIdCliente() {
         return idCliente;
@@ -39,13 +38,5 @@ public class Cliente {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
+   
 }

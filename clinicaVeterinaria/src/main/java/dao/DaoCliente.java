@@ -12,7 +12,7 @@ import model.Cliente;
 public class DaoCliente {
 
     public void inserir(Cliente cliente) throws SQLException, ClassNotFoundException {
-        String sql = "INSERT INTO CLIENTE(nome, endereco, telefone, cpf, enable) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO CLIENTE(nome, endereco, telefone, enable) VALUES (?,?,?,?)";
         Connection conn = null;
 
         try {
@@ -22,8 +22,7 @@ public class DaoCliente {
             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getEndereco());
             stmt.setString(3, cliente.getTelefone());
-            stmt.setString(4, cliente.getCpf());
-            stmt.setBoolean(5, true);
+            stmt.setBoolean(4, true);
 
             stmt.execute();
 
@@ -35,33 +34,33 @@ public class DaoCliente {
         }
     }
 
-    public List<Cliente> listar() throws ClassNotFoundException, SQLException {
+    //lista todos os clientes ou por nome (ou parte do nome)
+    public List<Cliente> listar(String busca) throws ClassNotFoundException, SQLException {
         List<Cliente> lista = new ArrayList<Cliente>();
 
-        String sql = "SELECT * FROM CLIENTE WHERE enable=?";
+        String sql = "SELECT * FROM CLIENTE WHERE UPPER(nome) LIKE UPPER(?) AND enable=?";
         Connection conn = null;
 
         try {
             conn = Conexao.obterConexao();
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setBoolean(1, true);
+            stmt.setString(1, "%" + busca + "%");
+            stmt.setBoolean(2, true);
 
             //Armazenará os resultados do banco de dados
             ResultSet resultados = stmt.executeQuery();
 
             while (resultados.next()) {
-                Integer id = resultados.getInt("idCliente");
-                String nome = resultados.getString("nome");
-                String endereco = resultados.getString("endereco");
-                String telefone = resultados.getString("telefone");
-                String cpf = resultados.getString("cpf");
+//                Integer id = resultados.getInt("idCliente");
+//                String nome = resultados.getString("nome");
+//                String endereco = resultados.getString("endereco");
+//                String telefone = resultados.getString("telefone");
 
                 Cliente cliente = new Cliente();
-                cliente.setIdCliente(id);
-                cliente.setNome(nome);
-                cliente.setEndereco(endereco);
-                cliente.setTelefone(telefone);
-                cliente.setCpf(cpf);
+                cliente.setIdCliente(resultados.getInt("idCliente"));
+                cliente.setNome(resultados.getString("nome"));
+                cliente.setEndereco(resultados.getString("endereco"));
+                cliente.setTelefone(resultados.getString("telefone"));
                 lista.add(cliente);
             }
         } catch (ClassNotFoundException | SQLException ex) {
@@ -72,33 +71,89 @@ public class DaoCliente {
         return lista;
     }
 
-    public Cliente buscarPorCpf(String cpf) throws ClassNotFoundException, SQLException {
+    //exclusão lógica
+    public void excluir(Integer idCliente) throws SQLException, ClassNotFoundException {
 
-        String sql = "SELECT * FROM CLIENTE WHERE cpf=? AND enable=?";
-
-        Cliente cliente = null;
-        Connection conn;
+        String sql = "UPDATE cliente SET enable = ? WHERE idCliente = ?";
+        Connection conn = null;
 
         try {
             conn = Conexao.obterConexao();
             PreparedStatement stmt = conn.prepareStatement(sql);
 
-            stmt.setString(1, cpf);
+            stmt.setBoolean(1, false);
+            stmt.setInt(2, idCliente);
+
+            stmt.execute();
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+
+        } finally {
+            conn.close();
+        }
+    }
+    
+    public void editar (Cliente cliente) throws SQLException, ClassNotFoundException {
+        String sql = "UPDATE CLIENTE SET nome=?, endereco=?, telefone=? WHERE idCliente=?";
+        Connection conn = null;
+
+        try {
+            conn = Conexao.obterConexao();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, cliente.getNome());
+            stmt.setString(2, cliente.getEndereco());
+            stmt.setString(3, cliente.getTelefone());
+            stmt.setInt(4, cliente.getIdCliente());
+
+            stmt.execute();
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+
+        } finally {
+            conn.close();
+        }
+    }
+    
+
+    public Cliente obter(Integer id) throws SQLException, Exception {
+
+        String sql = "SELECT * FROM cliente WHERE idCliente=? AND enable=?";
+
+        Connection conn = null;
+
+        try {
+            conn = Conexao.obterConexao();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1, id);
             stmt.setBoolean(2, true);
+            stmt.execute();
+
+            //Armazenará os resultados do banco de dados
             ResultSet resultado = stmt.executeQuery();
 
             if (resultado.next()) {
-                cliente = new Cliente();
-                cliente.setIdCliente(resultado.getInt("idCliente"));
+
+                Cliente cliente = new Cliente();
+                cliente.setIdCliente(id);
                 cliente.setNome(resultado.getString("nome"));
                 cliente.setEndereco(resultado.getString("endereco"));
-                cliente.setTelefone(resultado.getString("telefone"));
-                cliente.setCpf(resultado.getString("cpf"));
+                cliente.setTelefone(resultado.getString("telefone"));               
+                
+                //Retorna o cliente
+                return cliente;
             }
 
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
             System.err.println(ex.getMessage());
+
+        } finally {
+            conn.close();
         }
-        return cliente;
+
+        return null;
     }
 }
