@@ -1,9 +1,9 @@
-
 package model;
 
-public class Veterinario {
-    private Integer idVeterinario;
-    private String nome;
-    private String endereco;
-    private String telefone;
+public abstract class Veterinario {
+
+    protected Integer idVeterinario;
+    protected String nome;
+    protected String endereco;
+    protected String telefone;
 }

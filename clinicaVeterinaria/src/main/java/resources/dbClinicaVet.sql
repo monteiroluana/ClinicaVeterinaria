@@ -33,6 +33,7 @@ CREATE TABLE cirurgiaoGeral(
 	nome           VARCHAR(255),
         endereco       VARCHAR(255),
 	telefone       VARCHAR(30),
+        crm            INTEGER,
         enable         BOOLEAN,	
 
         CONSTRAINT PK_cirurgiaoGeral PRIMARY KEY (idCirurgiao)
@@ -44,6 +45,7 @@ CREATE TABLE radiologista(
 	nome              VARCHAR(255),
         endereco          VARCHAR(255),
 	telefone          VARCHAR(30),
+        conter            INTEGER,
         enable            BOOLEAN,	
 
         CONSTRAINT PK_radiologista PRIMARY KEY (idRadiologista)

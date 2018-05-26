@@ -16,9 +16,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private CadastrarCliente clienteAdd = null;
     private ConsultarCliente clienteConsult = null;
     private EditarCliente clienteEdit = null;
-    
+
     private CadastrarAnimal animalAdd = null;
     private ConsultarAnimal animalConsult = null;
+
+    private CadastroCirurgiao cirurgiaoAdd = null;
+
+    private CadastroRadiologista radiologistaAdd = null;
 
     public TelaPrincipal() {
         initComponents();
@@ -41,7 +45,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public void setClienteConsult(ConsultarCliente clienteConsult) {
         this.clienteConsult = clienteConsult;
     }
-    
+
     public EditarCliente getClienteEdit() {
         return clienteEdit;
     }
@@ -64,6 +68,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public void setAnimalConsult(ConsultarAnimal animalConsult) {
         this.animalConsult = animalConsult;
+    }
+
+    public CadastroCirurgiao getCirurgiaoAdd() {
+        return cirurgiaoAdd;
+    }
+
+    public void setCirurgiaoAdd(CadastroCirurgiao cirurgiaoAdd) {
+        this.cirurgiaoAdd = cirurgiaoAdd;
+    }
+
+    public CadastroRadiologista getRadiologistaAdd() {
+        return radiologistaAdd;
+    }
+
+    public void setRadiologistaAdd(CadastroRadiologista radiologistaAdd) {
+        this.radiologistaAdd = radiologistaAdd;
     }
 
     @SuppressWarnings("unchecked")
@@ -99,6 +119,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jpAnimalAdd = new javax.swing.JPanel();
         lblCadastrarAnimal = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jpCadastroCirurgiao = new javax.swing.JPanel();
+        lblCadastro = new javax.swing.JLabel();
+        jpCadastroRadiologista = new javax.swing.JPanel();
+        lblCadastroRadio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Loja da Galerinha");
@@ -273,6 +297,62 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jpCadastroCirurgiao.setBackground(new java.awt.Color(102, 102, 102));
+        jpCadastroCirurgiao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpCadastroCirurgiaoMouseClicked(evt);
+            }
+        });
+
+        lblCadastro.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        lblCadastro.setForeground(new java.awt.Color(255, 255, 255));
+        lblCadastro.setText("CIRURGIAO ADD");
+
+        javax.swing.GroupLayout jpCadastroCirurgiaoLayout = new javax.swing.GroupLayout(jpCadastroCirurgiao);
+        jpCadastroCirurgiao.setLayout(jpCadastroCirurgiaoLayout);
+        jpCadastroCirurgiaoLayout.setHorizontalGroup(
+            jpCadastroCirurgiaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpCadastroCirurgiaoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCadastro)
+                .addContainerGap(77, Short.MAX_VALUE))
+        );
+        jpCadastroCirurgiaoLayout.setVerticalGroup(
+            jpCadastroCirurgiaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCadastroCirurgiaoLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lblCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jpCadastroRadiologista.setBackground(new java.awt.Color(102, 102, 102));
+        jpCadastroRadiologista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpCadastroRadiologistaMouseClicked(evt);
+            }
+        });
+
+        lblCadastroRadio.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        lblCadastroRadio.setForeground(new java.awt.Color(255, 255, 255));
+        lblCadastroRadio.setText("RADIOLOGISTA ADD");
+
+        javax.swing.GroupLayout jpCadastroRadiologistaLayout = new javax.swing.GroupLayout(jpCadastroRadiologista);
+        jpCadastroRadiologista.setLayout(jpCadastroRadiologistaLayout);
+        jpCadastroRadiologistaLayout.setHorizontalGroup(
+            jpCadastroRadiologistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpCadastroRadiologistaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCadastroRadio)
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+        jpCadastroRadiologistaLayout.setVerticalGroup(
+            jpCadastroRadiologistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCadastroRadiologistaLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lblCadastroRadio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout navigationLayout = new javax.swing.GroupLayout(navigation);
         navigation.setLayout(navigationLayout);
         navigationLayout.setHorizontalGroup(
@@ -281,6 +361,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addComponent(jpClienteConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jpAnimalAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jpAnimalConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpCadastroCirurgiao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpCadastroRadiologista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         navigationLayout.setVerticalGroup(
             navigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,7 +375,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jpAnimalAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpAnimalConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(222, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpCadastroCirurgiao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpCadastroRadiologista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         desktop.setLayer(topo, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -399,12 +485,31 @@ public class TelaPrincipal extends javax.swing.JFrame {
         animalConsult.toFront();
     }//GEN-LAST:event_jpAnimalConsultaMouseClicked
 
+    private void jpCadastroCirurgiaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCadastroCirurgiaoMouseClicked
+        if (cirurgiaoAdd == null || !cirurgiaoAdd.isDisplayable()) {
+            cirurgiaoAdd = new CadastroCirurgiao();
+            desktop.add(cirurgiaoAdd);
+            //centraliza
+            this.openFrameInCenter(cirurgiaoAdd);
+        }
+        cirurgiaoAdd.toFront();
+    }//GEN-LAST:event_jpCadastroCirurgiaoMouseClicked
+
+    private void jpCadastroRadiologistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCadastroRadiologistaMouseClicked
+        if (radiologistaAdd == null || !radiologistaAdd.isDisplayable()) {
+            radiologistaAdd = new CadastroRadiologista();
+            desktop.add(radiologistaAdd);
+            //centraliza
+            this.openFrameInCenter(radiologistaAdd);
+        }
+        radiologistaAdd.toFront();
+    }//GEN-LAST:event_jpCadastroRadiologistaMouseClicked
+
     /*Inicio Movimentando a tela --------*/
     int xx;
     int xy;
 
     /*Fim Movimentando a tela --------*/
-    
     //Abre um internal frame centralizado na tela
     public void openFrameInCenter(JInternalFrame jif) {
         Dimension desktopSize = desktop.getSize();
@@ -458,10 +563,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jpAnimalAdd;
     private javax.swing.JPanel jpAnimalConsulta;
+    private javax.swing.JPanel jpCadastroCirurgiao;
+    private javax.swing.JPanel jpCadastroRadiologista;
     private javax.swing.JPanel jpClienteAdd;
     private javax.swing.JPanel jpClienteConsulta;
     private javax.swing.JLabel lblCadastarCliente;
     private javax.swing.JLabel lblCadastrarAnimal;
+    private javax.swing.JLabel lblCadastro;
+    private javax.swing.JLabel lblCadastroRadio;
     private javax.swing.JLabel lblConsultarAnimal;
     private javax.swing.JLabel lblConsultarCliente;
     private javax.swing.JPanel navigation;
