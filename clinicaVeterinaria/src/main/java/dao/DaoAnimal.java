@@ -166,5 +166,48 @@ public class DaoAnimal {
 
         return null;
     }
+    
+    public List<Animal> listarPorDono(int idDono) throws ClassNotFoundException, SQLException {
+        List<Animal> lista = new ArrayList<Animal>();
+
+        String sql = "SELECT a.* FROM animal a INNER JOIN cliente c "
+                + "ON a.idCliente = c.idCliente WHERE a.idCliente = ? AND a.enable = ?";
+                
+        Connection conn = null;
+
+        try {
+            conn = Conexao.obterConexao();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1, idDono);
+            stmt.setBoolean(2, true);
+
+            //Armazenará os resultados do banco de dados
+            ResultSet resultados = stmt.executeQuery();
+
+            while (resultados.next()) {
+                Integer idAnimal = resultados.getInt("idAnimal");
+                String nome = resultados.getString("nome");
+                String especie = resultados.getString("especie");
+                String sexo = resultados.getString("sexo");
+                Integer idCliente = resultados.getInt("idCliente");
+                Integer idade = resultados.getInt("idade");
+
+                Animal animal = new Animal();
+                animal.setIdAnimal(idAnimal);
+                animal.setIdCliente(idCliente);
+                animal.setNome(nome);
+                animal.setEspecie(especie);
+                animal.setSexo(sexo);
+                animal.setIdade(idade);
+                lista.add(animal);
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.err.println(ex.getMessage());
+        } finally {
+            conn.close();
+        }
+        return lista;
+    }
 
 }

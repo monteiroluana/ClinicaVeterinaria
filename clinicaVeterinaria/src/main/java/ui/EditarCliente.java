@@ -130,7 +130,7 @@ public class EditarCliente extends javax.swing.JInternalFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         cliente.setNome(txtNome.getText());
-        cliente.setCpf(txtNome.getText());
+        cliente.setCpf(txtCpf.getText());
         cliente.setEndereco(txtEndereco.getText());
         cliente.setTelefone(txtTelefone.getText());
 
