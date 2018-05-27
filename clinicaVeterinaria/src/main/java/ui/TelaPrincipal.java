@@ -119,19 +119,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
         exit = new javax.swing.JLabel();
         navigation = new javax.swing.JPanel();
         jpClienteAdd = new javax.swing.JPanel();
-        lblCadastarCliente = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jpClienteConsulta = new javax.swing.JPanel();
-        lblConsultarCliente = new javax.swing.JLabel();
+        lblCadastarCliente = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jpAnimalConsulta = new javax.swing.JPanel();
         lblConsultarAnimal = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jpAnimalAdd = new javax.swing.JPanel();
         lblCadastrarAnimal = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jpCadastroCirurgiao = new javax.swing.JPanel();
         lblCadastro = new javax.swing.JLabel();
         jpCadastroRadiologista = new javax.swing.JPanel();
         lblCadastroRadio = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Loja da Galerinha");
@@ -171,7 +177,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         topoLayout.setHorizontalGroup(
             topoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topoLayout.createSequentialGroup()
-                .addContainerGap(993, Short.MAX_VALUE)
+                .addContainerGap(955, Short.MAX_VALUE)
                 .addComponent(exit)
                 .addContainerGap())
         );
@@ -193,9 +199,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        lblCadastarCliente.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        lblCadastarCliente.setForeground(new java.awt.Color(255, 255, 255));
-        lblCadastarCliente.setText("CADASTRAR CLIENTE");
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Luana\\Documents\\GitHub\\ClinicaVeterinaria\\clinicaVeterinaria\\src\\main\\java\\resources\\imgs\\userAdd1.png")); // NOI18N
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("novo cliente");
+        jLabel1.setToolTipText("");
 
         javax.swing.GroupLayout jpClienteAddLayout = new javax.swing.GroupLayout(jpClienteAdd);
         jpClienteAdd.setLayout(jpClienteAddLayout);
@@ -203,31 +211,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jpClienteAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpClienteAddLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblCadastarCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addGroup(jpClienteAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpClienteAddLayout.setVerticalGroup(
             jpClienteAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpClienteAddLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpClienteAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblCadastarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jpClienteConsulta.setBackground(new java.awt.Color(102, 102, 102));
+        jpClienteConsulta.setPreferredSize(new java.awt.Dimension(98, 50));
         jpClienteConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpClienteConsultaMouseClicked(evt);
             }
         });
 
-        lblConsultarCliente.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        lblConsultarCliente.setForeground(new java.awt.Color(255, 255, 255));
-        lblConsultarCliente.setText("CONSULTAR CLIENTE");
+        lblCadastarCliente.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        lblCadastarCliente.setForeground(new java.awt.Color(255, 255, 255));
+        lblCadastarCliente.setIcon(new javax.swing.ImageIcon("C:\\Users\\Luana\\Documents\\GitHub\\ClinicaVeterinaria\\clinicaVeterinaria\\src\\main\\java\\resources\\imgs\\userSearch1.png")); // NOI18N
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("buscar cliente");
+        jLabel4.setToolTipText("");
 
         javax.swing.GroupLayout jpClienteConsultaLayout = new javax.swing.GroupLayout(jpClienteConsulta);
         jpClienteConsulta.setLayout(jpClienteConsultaLayout);
@@ -235,14 +248,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jpClienteConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpClienteConsultaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblConsultarCliente)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jpClienteConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCadastarCliente)
+                    .addComponent(jLabel4))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jpClienteConsultaLayout.setVerticalGroup(
             jpClienteConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpClienteConsultaLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(lblConsultarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
+            .addGroup(jpClienteConsultaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCadastarCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -255,7 +272,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         lblConsultarAnimal.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         lblConsultarAnimal.setForeground(new java.awt.Color(255, 255, 255));
-        lblConsultarAnimal.setText("CONSULTAR ANIMAL");
+        lblConsultarAnimal.setIcon(new javax.swing.ImageIcon("C:\\Users\\Luana\\Documents\\GitHub\\ClinicaVeterinaria\\clinicaVeterinaria\\src\\main\\java\\resources\\imgs\\petSearch1.png")); // NOI18N
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("buscar animal");
+        jLabel5.setToolTipText("");
 
         javax.swing.GroupLayout jpAnimalConsultaLayout = new javax.swing.GroupLayout(jpAnimalConsulta);
         jpAnimalConsulta.setLayout(jpAnimalConsultaLayout);
@@ -263,14 +284,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jpAnimalConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpAnimalConsultaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblConsultarAnimal)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGroup(jpAnimalConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblConsultarAnimal)
+                    .addComponent(jLabel5))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpAnimalConsultaLayout.setVerticalGroup(
             jpAnimalConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAnimalConsultaLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(lblConsultarAnimal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jpAnimalConsultaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblConsultarAnimal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -283,7 +308,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         lblCadastrarAnimal.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         lblCadastrarAnimal.setForeground(new java.awt.Color(255, 255, 255));
-        lblCadastrarAnimal.setText("CADASTRAR ANIMAL");
+        lblCadastrarAnimal.setIcon(new javax.swing.ImageIcon("C:\\Users\\Luana\\Documents\\GitHub\\ClinicaVeterinaria\\clinicaVeterinaria\\src\\main\\java\\resources\\imgs\\petAdd1.png")); // NOI18N
+
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("novo animal");
+        jLabel6.setToolTipText("");
 
         javax.swing.GroupLayout jpAnimalAddLayout = new javax.swing.GroupLayout(jpAnimalAdd);
         jpAnimalAdd.setLayout(jpAnimalAddLayout);
@@ -291,19 +320,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jpAnimalAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpAnimalAddLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblCadastrarAnimal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addGroup(jpAnimalAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpAnimalAddLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3))
+                    .addComponent(lblCadastrarAnimal))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpAnimalAddLayout.setVerticalGroup(
             jpAnimalAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpAnimalAddLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpAnimalAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblCadastrarAnimal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblCadastrarAnimal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(24, 24, 24))
         );
 
         jpCadastroCirurgiao.setBackground(new java.awt.Color(102, 102, 102));
@@ -324,7 +358,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(jpCadastroCirurgiaoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblCadastro)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpCadastroCirurgiaoLayout.setVerticalGroup(
             jpCadastroCirurgiaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,7 +386,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(jpCadastroRadiologistaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblCadastroRadio)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpCadastroRadiologistaLayout.setVerticalGroup(
             jpCadastroRadiologistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,33 +396,69 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Luana\\Documents\\GitHub\\ClinicaVeterinaria\\clinicaVeterinaria\\src\\main\\java\\resources\\imgs\\consultAdd.png")); // NOI18N
+
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("nova consulta");
+        jLabel7.setToolTipText("");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel7))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout navigationLayout = new javax.swing.GroupLayout(navigation);
         navigation.setLayout(navigationLayout);
         navigationLayout.setHorizontalGroup(
             navigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpClienteAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jpClienteConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jpAnimalAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jpAnimalConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jpCadastroCirurgiao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jpCadastroRadiologista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(navigationLayout.createSequentialGroup()
+                .addGroup(navigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jpAnimalAdd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpClienteAdd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(navigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jpAnimalConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpClienteConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         navigationLayout.setVerticalGroup(
             navigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navigationLayout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(jpClienteAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpClienteConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpAnimalAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpAnimalConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(68, 68, 68)
+                .addGroup(navigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jpClienteConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpClienteAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(navigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jpAnimalConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpAnimalAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(101, 101, 101)
                 .addComponent(jpCadastroCirurgiao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpCadastroRadiologista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         desktop.setLayer(topo, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -400,8 +470,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(topo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(desktopLayout.createSequentialGroup()
-                .addComponent(navigation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 839, Short.MAX_VALUE))
+                .addComponent(navigation, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,11 +485,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktop, javax.swing.GroupLayout.DEFAULT_SIZE, 1038, Short.MAX_VALUE)
+            .addComponent(desktop, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktop, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
+            .addComponent(desktop, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
         );
 
         pack();
@@ -568,8 +638,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktop;
     private javax.swing.JLabel exit;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jpAnimalAdd;
     private javax.swing.JPanel jpAnimalConsulta;
     private javax.swing.JPanel jpCadastroCirurgiao;
@@ -581,7 +658,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblCadastro;
     private javax.swing.JLabel lblCadastroRadio;
     private javax.swing.JLabel lblConsultarAnimal;
-    private javax.swing.JLabel lblConsultarCliente;
     private javax.swing.JPanel navigation;
     private javax.swing.JPanel topo;
     // End of variables declaration//GEN-END:variables
