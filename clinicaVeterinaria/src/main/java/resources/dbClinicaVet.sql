@@ -58,6 +58,7 @@ CREATE TABLE consulta(
 	dataConsulta   DATE,
         relato         VARCHAR(255),
         idAnimal       INTEGER NOT NULL,
+        enable         BOOLEAN,
 --        idVeterinario  INTEGER NOT NULL,
 
 	CONSTRAINT PK_consulta PRIMARY KEY (idConsulta),

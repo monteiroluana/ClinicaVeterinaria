@@ -23,7 +23,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private CadastroVeterinario veterinarioAdd = null;
 
-    private CadastrarConsulta consultaAdd = null;
+    private BuscarConsulta buscarConsulta = null;
 
     public TelaPrincipal() {
         initComponents();
@@ -89,12 +89,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
    
 
-    public CadastrarConsulta getConsultaAdd() {
-        return consultaAdd;
+    public BuscarConsulta getBuscarConsulta() {
+        return buscarConsulta;
     }
 
-    public void setConsultaAdd(CadastrarConsulta consultaAdd) {
-        this.consultaAdd = consultaAdd;
+    public void setConsultaAdd(BuscarConsulta buscarConsulta) {
+        this.buscarConsulta = buscarConsulta;
     }
 
     @SuppressWarnings("unchecked")
@@ -136,7 +136,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jpCadastroCirurgiao = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         lblCadastro = new javax.swing.JLabel();
-        jpCadastroConsulta = new javax.swing.JPanel();
+        jpBuscarConsulta = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jpVeterinarioConsult = new javax.swing.JPanel();
@@ -376,33 +376,33 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jpCadastroConsulta.setBackground(new java.awt.Color(102, 102, 102));
-        jpCadastroConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
+        jpBuscarConsulta.setBackground(new java.awt.Color(102, 102, 102));
+        jpBuscarConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jpCadastroConsultaMouseClicked(evt);
+                jpBuscarConsultaMouseClicked(evt);
             }
         });
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Luana\\Documents\\GitHub\\ClinicaVeterinaria\\clinicaVeterinaria\\src\\main\\java\\resources\\imgs\\consultAdd.png")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Luana\\Documents\\GitHub\\ClinicaVeterinaria\\clinicaVeterinaria\\src\\main\\java\\resources\\imgs\\consultSearch1.png")); // NOI18N
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("nova consulta");
+        jLabel7.setText("buscar consulta");
         jLabel7.setToolTipText("");
 
-        javax.swing.GroupLayout jpCadastroConsultaLayout = new javax.swing.GroupLayout(jpCadastroConsulta);
-        jpCadastroConsulta.setLayout(jpCadastroConsultaLayout);
-        jpCadastroConsultaLayout.setHorizontalGroup(
-            jpCadastroConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpCadastroConsultaLayout.createSequentialGroup()
+        javax.swing.GroupLayout jpBuscarConsultaLayout = new javax.swing.GroupLayout(jpBuscarConsulta);
+        jpBuscarConsulta.setLayout(jpBuscarConsultaLayout);
+        jpBuscarConsultaLayout.setHorizontalGroup(
+            jpBuscarConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpBuscarConsultaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpCadastroConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpBuscarConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jLabel7))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jpCadastroConsultaLayout.setVerticalGroup(
-            jpCadastroConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpCadastroConsultaLayout.createSequentialGroup()
+        jpBuscarConsultaLayout.setVerticalGroup(
+            jpBuscarConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpBuscarConsultaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -445,7 +445,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(navigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jpCadastroCirurgiao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jpAnimalAdd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpCadastroConsulta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpBuscarConsulta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jpClienteAdd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(navigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -467,7 +467,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(jpAnimalConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpAnimalAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jpCadastroConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpBuscarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(navigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jpVeterinarioConsult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -588,14 +588,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         veterinarioAdd.toFront();
     }//GEN-LAST:event_jpCadastroCirurgiaoMouseClicked
 
-    private void jpCadastroConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCadastroConsultaMouseClicked
-        if (consultaAdd == null || !consultaAdd.isDisplayable()) {
-            consultaAdd = new CadastrarConsulta();
-            desktop.add(consultaAdd);
-            this.openFrameInCenter(consultaAdd);
+    private void jpBuscarConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpBuscarConsultaMouseClicked
+        if (buscarConsulta == null || !buscarConsulta.isDisplayable()) {
+            try {
+                buscarConsulta = new BuscarConsulta();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            desktop.add(buscarConsulta);
+            this.openFrameInCenter(buscarConsulta);
         }
-        consultaAdd.toFront();
-    }//GEN-LAST:event_jpCadastroConsultaMouseClicked
+        buscarConsulta.toFront();
+    }//GEN-LAST:event_jpBuscarConsultaMouseClicked
 
     /*Inicio Movimentando a tela --------*/
     int xx;
@@ -664,8 +670,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jpAnimalAdd;
     private javax.swing.JPanel jpAnimalConsulta;
+    private javax.swing.JPanel jpBuscarConsulta;
     private javax.swing.JPanel jpCadastroCirurgiao;
-    private javax.swing.JPanel jpCadastroConsulta;
     private javax.swing.JPanel jpClienteAdd;
     private javax.swing.JPanel jpClienteConsulta;
     private javax.swing.JPanel jpVeterinarioConsult;
