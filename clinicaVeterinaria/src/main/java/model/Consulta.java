@@ -11,7 +11,7 @@ public class Consulta {
     private Date dataConsulta;
     private String relatoConsulta;
     private Integer idAnimal;
-    private Integer idExame;
+
 
     public Integer getIdConsulta() {
         return idConsulta;
@@ -51,12 +51,5 @@ public class Consulta {
         this.idAnimal = idAnimal;
     }
 
-    public Integer getIdExame() {
-        return idExame;
-    }
-
-    public void setIdExame(Integer idExame) {
-        this.idExame = idExame;
-    }
 
 }

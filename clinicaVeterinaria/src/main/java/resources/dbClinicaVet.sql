@@ -52,11 +52,6 @@ CREATE TABLE radiologista(
 );
 
 
-CREATE TABLE exame(
-	idExame     INTEGER NOT NULL AUTO_INCREMENT,
-	descricao           VARCHAR(255),
-        CONSTRAINT PK_exame PRIMARY KEY (idExame)
-);
 
 CREATE TABLE consulta(
 	idConsulta     INTEGER NOT NULL AUTO_INCREMENT,
@@ -64,12 +59,10 @@ CREATE TABLE consulta(
         relato         VARCHAR(255),
         idAnimal       INTEGER NOT NULL,
 --        idVeterinario  INTEGER NOT NULL,
-       --idExame        INTEGER NOT NULL,
 
 	CONSTRAINT PK_consulta PRIMARY KEY (idConsulta),
         FOREIGN KEY(idAnimal) REFERENCES animal(idAnimal)
 --        FOREIGN KEY(idVeterinario) REFERENCES veterinario(idVeterinario),
-     --   FOREIGN KEY(idExame) REFERENCES exame(idExame)
 );
 
 
