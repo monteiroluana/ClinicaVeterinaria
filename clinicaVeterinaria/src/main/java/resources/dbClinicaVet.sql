@@ -60,16 +60,16 @@ CREATE TABLE exame(
 
 CREATE TABLE consulta(
 	idConsulta     INTEGER NOT NULL AUTO_INCREMENT,
-	dataConsulta   VARCHAR(255),
+	dataConsulta   DATE,
         relato         VARCHAR(255),
         idAnimal       INTEGER NOT NULL,
 --        idVeterinario  INTEGER NOT NULL,
-        idExame        INTEGER NOT NULL,
+       --idExame        INTEGER NOT NULL,
 
 	CONSTRAINT PK_consulta PRIMARY KEY (idConsulta),
-        FOREIGN KEY(idAnimal) REFERENCES animal(idAnimal),
+        FOREIGN KEY(idAnimal) REFERENCES animal(idAnimal)
 --        FOREIGN KEY(idVeterinario) REFERENCES veterinario(idVeterinario),
-        FOREIGN KEY(idExame) REFERENCES exame(idExame)
+     --   FOREIGN KEY(idExame) REFERENCES exame(idExame)
 );
 
 

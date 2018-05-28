@@ -18,6 +18,7 @@ public class ConsultarAnimal extends javax.swing.JInternalFrame {
 
     //Instância do form de edição de animal
     EditarAnimal EditarAnimal = new EditarAnimal();
+    CadastrarConsulta cadastroConsulta = new CadastrarConsulta();
 
     public ConsultarAnimal() throws ClassNotFoundException, SQLException {
         initComponents();
@@ -41,6 +42,7 @@ public class ConsultarAnimal extends javax.swing.JInternalFrame {
         btnPesquisa = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
+        btnCadastroConsulta = new javax.swing.JButton();
 
         setBorder(null);
         setClosable(true);
@@ -100,6 +102,13 @@ public class ConsultarAnimal extends javax.swing.JInternalFrame {
             }
         });
 
+        btnCadastroConsulta.setText("Cadastro Consulta");
+        btnCadastroConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCadastroConsultaMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -112,7 +121,9 @@ public class ConsultarAnimal extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnExcluir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEditar))
+                                .addComponent(btnEditar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCadastroConsulta))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
@@ -136,7 +147,8 @@ public class ConsultarAnimal extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditar)
-                    .addComponent(btnExcluir))
+                    .addComponent(btnExcluir)
+                    .addComponent(btnCadastroConsulta))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -258,6 +270,39 @@ public class ConsultarAnimal extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    private void btnCadastroConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastroConsultaMouseClicked
+        try {
+            //Obtém a linha selecionada da tabela de resultados
+            final int row = tableConsultaAnimal.getSelectedRow();
+
+            //Obtém o valor do ID da coluna "ID" da tabela de resultados
+            Integer id = (Integer) tableConsultaAnimal.getValueAt(row, 0);
+
+            System.out.println("id cliente " + id);
+
+            //com o ID da coluna, obtem o animal
+            Animal animal = daoAnimal.obter(id);
+
+            cadastroConsulta.dispose();
+            cadastroConsulta = new CadastrarConsulta();
+            cadastroConsulta.setAnimal(animal);
+            cadastroConsulta.setTitle(animal.getNome());
+            this.getParent().add(cadastroConsulta);
+            this.openFrameInCenter(cadastroConsulta);
+            cadastroConsulta.toFront();
+
+        } catch (Exception e) {
+            //Se ocorrer algum erro técnico, mostra-o no console,
+            //mas esconde-o do usuário
+            e.printStackTrace();
+
+            //Exibe uma mensagem de erro genérica ao usuário
+            JOptionPane.showMessageDialog(rootPane, "Não é possível "
+                    + "continuar com essa ação.",
+                    "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnCadastroConsultaMouseClicked
+
     //Atualiza a lista de animais
     public boolean refreshList() throws Exception {
 
@@ -301,6 +346,7 @@ public class ConsultarAnimal extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadastroConsulta;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisa;

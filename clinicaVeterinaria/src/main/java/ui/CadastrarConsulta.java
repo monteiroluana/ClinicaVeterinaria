@@ -1,8 +1,7 @@
 package ui;
 
-import dao.DaoAnimal;
 import dao.DaoCliente;
-import java.awt.event.KeyEvent;
+import dao.DaoConsulta;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +11,24 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Animal;
 import model.Cliente;
+import model.Consulta;
 import model.Exame;
 
 public class CadastrarConsulta extends javax.swing.JInternalFrame {
 
+    //Armazena o animal para consulta
+    Animal animal = new Animal();
+
     public CadastrarConsulta() {
         initComponents();
+    }
+
+    public Animal getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
     }
 
     @SuppressWarnings("unchecked")
@@ -39,14 +50,31 @@ public class CadastrarConsulta extends javax.swing.JInternalFrame {
         txtVeterinario = new javax.swing.JTextField();
         lblCpf = new javax.swing.JLabel();
         txtCpf = new javax.swing.JTextField();
-        comboAnimal = new javax.swing.JComboBox<>();
         lblDono = new javax.swing.JLabel();
         txtDono = new javax.swing.JTextField();
+        txtNomeAnimal = new javax.swing.JTextField();
 
         setBorder(null);
         setClosable(true);
         setIconifiable(true);
         setTitle("Registrar Consulta");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -94,6 +122,11 @@ public class CadastrarConsulta extends javax.swing.JInternalFrame {
 
         btnCadastrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCadastrarMouseClicked(evt);
+            }
+        });
 
         lblVeterinario.setText("Veterinário:");
 
@@ -113,10 +146,9 @@ public class CadastrarConsulta extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnCadastrar)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,19 +159,16 @@ public class CadastrarConsulta extends javax.swing.JInternalFrame {
                                     .addComponent(btnExame, javax.swing.GroupLayout.Alignment.LEADING))))
                         .addGap(2, 2, 2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblVeterinario)
-                                    .addComponent(lblCpf))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtCpf)
-                                    .addComponent(txtVeterinario, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblVeterinario, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblCpf, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtCpf)
+                            .addComponent(txtVeterinario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                            .addComponent(txtNomeAnimal, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -171,7 +200,7 @@ public class CadastrarConsulta extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(comboAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNomeAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -220,43 +249,100 @@ public class CadastrarConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExameMouseClicked
 
     private void keyEnterPressedCPF(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keyEnterPressedCPF
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            DaoCliente daoCliente = new DaoCliente();
-            try {
-                //busca o cliente por cpf, preenche o campo com o nome do dono                
-                Cliente cliente = daoCliente.buscarPorCpf(txtCpf.getText());
-                txtDono.setText(cliente.getNome());
-
-                //pesquisa os animais que o cliente tem
-                DaoAnimal daoAnimal = new DaoAnimal();
-                List<Animal> listaAnimais = daoAnimal.listarPorDono(cliente.getIdCliente());
-
-                //preenche o comboBox com os animais que o cliente tem
-                if (listaAnimais != null || listaAnimais.size() >= 0) {
-                    for (int i = 0; i < listaAnimais.size(); i++) {
-                        Animal animal = listaAnimais.get(i);
-
-                        if (animal != null) {
-                            comboAnimal.addItem(animal.getNome());
-                        }
-                    }
-                } else {
-                    JOptionPane.showInternalMessageDialog(this, "Resultado null");
-                }
-
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(CadastrarConsulta.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(CadastrarConsulta.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+//        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+//            DaoCliente daoCliente = new DaoCliente();
+//            try {
+//                //busca o cliente por cpf, preenche o campo com o nome do dono                
+//                Cliente cliente = daoCliente.buscarPorCpf(txtCpf.getText());
+//                txtDono.setText(cliente.getNome());
+//
+//                //pesquisa os animais que o cliente tem
+//                DaoAnimal daoAnimal = new DaoAnimal();
+//                List<Animal> listaAnimais = daoAnimal.listarPorDono(cliente.getIdCliente());
+//
+//                //preenche o comboBox com os animais que o cliente tem
+//                if (listaAnimais != null || listaAnimais.size() >= 0) {
+//                    for (int i = 0; i < listaAnimais.size(); i++) {
+//                        Animal animal = listaAnimais.get(i);
+//                        
+//                        if (animal != null) {
+//                            comboAnimal.addItem(animal.getNome());
+//                        }
+//                    }
+//                } else {
+//                    JOptionPane.showInternalMessageDialog(this, "Resultado null");
+//                }
+//                
+//            } catch (ClassNotFoundException ex) {
+//                Logger.getLogger(CadastrarConsulta.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (SQLException ex) {
+//                Logger.getLogger(CadastrarConsulta.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
     }//GEN-LAST:event_keyEnterPressedCPF
 
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        txtNomeAnimal.setText(animal.getNome());
+        DaoCliente daoCliente = new DaoCliente();
+        Cliente cliente = new Cliente();
+        try {
+            cliente = daoCliente.buscarPorId(animal.getIdCliente());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CadastrarConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastrarConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txtCpf.setText(cliente.getCpf());
+        txtDono.setText(cliente.getNome());
+    }//GEN-LAST:event_formInternalFrameOpened
+
+    private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
+        Consulta consulta = new Consulta();
+        consulta.setDataConsulta(txtDataConsulta.getText());
+        consulta.setIdAnimal(animal.getIdAnimal());
+        consulta.setRelatoConsulta(txtRelato.getText());
+
+        DaoConsulta daoConsulta = new DaoConsulta();
+
+        try {
+            daoConsulta.inserir(consulta);
+            //Exibe mensagem de Sucesso!
+            JOptionPane.showMessageDialog(rootPane, "Consulta inserida com sucesso.",
+                    "Cadastro efetuado!", JOptionPane.INFORMATION_MESSAGE);
+
+            limparTela();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastrarConsulta.class.getName()).log(Level.SEVERE, null, ex);
+
+            //Exibe mensagens de erro 
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(),
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CadastrarConsulta.class.getName()).log(Level.SEVERE, null, ex);
+
+            //Exibe mensagens de erro 
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage(),
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+
+    }//GEN-LAST:event_btnCadastrarMouseClicked
+
+    public void limparTela() {
+        txtDataConsulta.setText("");
+        txtCpf.setText("");
+        txtDono.setText("");
+        txtNomeAnimal.setText("");
+        txtRelato.setText("");
+        txtNomeAnimal.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnExame;
-    private javax.swing.JComboBox<String> comboAnimal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -270,6 +356,7 @@ public class CadastrarConsulta extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtDataConsulta;
     private javax.swing.JTextField txtDono;
+    private javax.swing.JTextField txtNomeAnimal;
     private javax.swing.JTextArea txtRelato;
     private javax.swing.JTextField txtVeterinario;
     // End of variables declaration//GEN-END:variables

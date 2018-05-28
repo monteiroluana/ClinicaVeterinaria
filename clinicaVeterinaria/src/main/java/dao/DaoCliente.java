@@ -190,5 +190,38 @@ public class DaoCliente {
 
         return cli;
     }
+    
+     public Cliente buscarPorId(Integer idCliente) throws ClassNotFoundException, SQLException {
+
+        String sql = "SELECT * FROM CLIENTE WHERE idCliente=? AND enable=?";
+
+        Cliente cli = null;
+        Connection conn;
+
+        try {
+            conn = Conexao.obterConexao();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1, idCliente);
+            stmt.setBoolean(2, true);
+            ResultSet res = stmt.executeQuery();
+
+            if (res.next()) {
+                cli = new Cliente();
+
+                cli.setIdCliente(res.getInt("idCliente"));
+                cli.setNome(res.getString("nome"));
+                cli.setCpf(res.getString("cpf"));
+                cli.setEndereco(res.getString("endereco"));
+                cli.setTelefone(res.getString("telefone"));
+
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return cli;
+    }
 
 }
