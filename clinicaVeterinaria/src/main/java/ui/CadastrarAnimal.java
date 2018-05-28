@@ -161,13 +161,13 @@ public class CadastrarAnimal extends javax.swing.JInternalFrame {
 
         animal.setNome(txtNome.getText());
         animal.setEspecie(txtEspecie.getText());
-        if (jrbMacho.isSelected()) {
-            animal.setSexo("Macho");
-        } else {
-            animal.setSexo("Femea");
-        }
         animal.setIdade(Integer.parseInt(txtIdade.getText()));
         animal.setIdCliente(cliente.getIdCliente());
+        if (jrbMacho.isSelected()) {
+            animal.setSexo(jrbMacho.getText());
+        } else {
+            animal.setSexo(jrbFemea.getText());
+        }
 
         try {
             //insere os dados do animal no bd

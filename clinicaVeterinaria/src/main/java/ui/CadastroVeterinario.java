@@ -1,15 +1,17 @@
 package ui;
 
 import dao.DaoCirurgiao;
+import dao.DaoRadiologista;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.CirurgiaoGeral;
+import model.Radiologista;
 
-public class CadastroCirurgiao extends javax.swing.JInternalFrame {
+public class CadastroVeterinario extends javax.swing.JInternalFrame {
 
-    public CadastroCirurgiao() {
+    public CadastroVeterinario() {
         initComponents();
     }
 
@@ -19,8 +21,6 @@ public class CadastroCirurgiao extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnCadastrar = new javax.swing.JButton();
-        txtCrm = new javax.swing.JTextField();
-        lblCrm = new javax.swing.JLabel();
         lblTelefone = new javax.swing.JLabel();
         txtTelefone = new javax.swing.JTextField();
         txtEndereco = new javax.swing.JTextField();
@@ -31,7 +31,7 @@ public class CadastroCirurgiao extends javax.swing.JInternalFrame {
         setBorder(null);
         setClosable(true);
         setIconifiable(true);
-        setTitle("Cadastro Cirurgião Geral");
+        setTitle("Cadastro Veterinário");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -41,8 +41,6 @@ public class CadastroCirurgiao extends javax.swing.JInternalFrame {
                 btnCadastrarMouseClicked(evt);
             }
         });
-
-        lblCrm.setText("CRM:");
 
         lblTelefone.setText("Telefone:");
 
@@ -57,12 +55,8 @@ public class CadastroCirurgiao extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(btnCadastrar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblCrm)
                             .addComponent(lblNome)
                             .addComponent(lblTelefone)
                             .addComponent(lblEndereco))
@@ -70,8 +64,10 @@ public class CadastroCirurgiao extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCrm, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(btnCadastrar)))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -89,13 +85,9 @@ public class CadastroCirurgiao extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCrm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCrm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(29, 29, 29)
+                .addGap(57, 57, 57)
                 .addComponent(btnCadastrar)
-                .addGap(40, 40, 40))
+                .addGap(43, 43, 43))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -114,32 +106,70 @@ public class CadastroCirurgiao extends javax.swing.JInternalFrame {
 
     private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
         CirurgiaoGeral cirurgiao = new CirurgiaoGeral();
-
-        cirurgiao.setNome(txtNome.getText());
-        cirurgiao.setEndereco(txtEndereco.getText());
-        cirurgiao.setTelefone(txtTelefone.getText());
-        cirurgiao.setCrm(Integer.parseInt(txtCrm.getText()));
-
         DaoCirurgiao daoCirurgiao = new DaoCirurgiao();
 
-        try {
-            daoCirurgiao.inserir(cirurgiao);
-            //Exibe mensagem de Sucesso!
-            JOptionPane.showMessageDialog(rootPane, "Cliente inserido com sucesso.",
-                    "Cadastro efetuado!", JOptionPane.INFORMATION_MESSAGE);
+        Radiologista radiologista = new Radiologista();
+        DaoRadiologista daoRadiologista = new DaoRadiologista();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroRadiologista.class.getName()).log(Level.SEVERE, null, ex);
+        
+        //Escolhendo a área de atuação do veterinario
+        Object opcoes[] = {"Cirurgião Geral", "Radiologista"};
+        int area = JOptionPane.showOptionDialog(rootPane, "Qual área de especialização ?", "Especialização", WIDTH, HEIGHT, frameIcon, opcoes, "");
 
-            //Exibe mensagens de erro para o usuário
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(),
-                    "Erro", JOptionPane.ERROR_MESSAGE);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CadastroRadiologista.class.getName()).log(Level.SEVERE, null, ex);
+        //Se for Cirurgião Geral
+        if (area == 0) {
+            cirurgiao.setCrm(Integer.parseInt(JOptionPane.showInputDialog("Registro CRM do Médico Cirurgião")));
+            cirurgiao.setNome(txtNome.getText());
+            cirurgiao.setEndereco(txtEndereco.getText());
+            cirurgiao.setTelefone(txtTelefone.getText());
 
-            //Exibe mensagens de erro para o usuário
-            JOptionPane.showMessageDialog(rootPane, ex.getMessage(),
-                    "Erro", JOptionPane.ERROR_MESSAGE);
+            try {
+                daoCirurgiao.inserir(cirurgiao);
+                //Exibe mensagem de Sucesso!
+                JOptionPane.showMessageDialog(rootPane, "Veterinário inserido com sucesso.",
+                        "Cadastro efetuado!", JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(CadastroVeterinario.class.getName()).log(Level.SEVERE, null, ex);
+
+                //Exibe mensagens de erro para o usuário
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(),
+                        "Erro", JOptionPane.ERROR_MESSAGE);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CadastroVeterinario.class.getName()).log(Level.SEVERE, null, ex);
+
+                //Exibe mensagens de erro para o usuário
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(),
+                        "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+
+            //Se for Radiologista
+        } else if (area == 1) {
+            radiologista.setConter(Integer.parseInt(JOptionPane.showInputDialog("Registro CONTER do Radiologista")));
+            radiologista.setNome(txtNome.getText());
+            radiologista.setEndereco(txtEndereco.getText());
+            radiologista.setTelefone(txtTelefone.getText());
+
+            try {
+                daoRadiologista.inserir(radiologista);
+                //Exibe mensagem de Sucesso!
+                JOptionPane.showMessageDialog(rootPane, "Veterinário inserido com sucesso.",
+                        "Cadastro efetuado!", JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(CadastroVeterinario.class.getName()).log(Level.SEVERE, null, ex);
+
+                //Exibe mensagens de erro para o usuário
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(),
+                        "Erro", JOptionPane.ERROR_MESSAGE);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CadastroVeterinario.class.getName()).log(Level.SEVERE, null, ex);
+
+                //Exibe mensagens de erro para o usuário
+                JOptionPane.showMessageDialog(rootPane, ex.getMessage(),
+                        "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
 
         limparTela();
@@ -149,11 +179,9 @@ public class CadastroCirurgiao extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblCrm;
     private javax.swing.JLabel lblEndereco;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblTelefone;
-    private javax.swing.JTextField txtCrm;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtTelefone;
@@ -163,7 +191,6 @@ public class CadastroCirurgiao extends javax.swing.JInternalFrame {
         txtNome.setText("");
         txtEndereco.setText("");
         txtTelefone.setText("");
-        txtCrm.setText("");
     }
 
 }
