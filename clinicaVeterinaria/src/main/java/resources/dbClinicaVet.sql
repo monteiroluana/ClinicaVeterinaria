@@ -75,5 +75,3 @@ INSERT INTO cirurgiaoGeral (nome, endereco, telefone, crm, enable) VALUES
 
 INSERT INTO radiologista (nome, endereco, telefone, conter, enable) VALUES 
 ("luana monteiro", "rua bbb", "99999999", "202020", true);
-
-select * from consulta;
