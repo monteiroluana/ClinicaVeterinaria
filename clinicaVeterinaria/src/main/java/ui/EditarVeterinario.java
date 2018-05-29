@@ -215,13 +215,6 @@ public class EditarVeterinario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCadastrarMouseClicked
 
     private void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_internalFrameOpened
-        System.out.println("radio " + radiologista.getNome());
-        System.out.println(radiologista.getEndereco());
-        System.out.println(radiologista.getTelefone());
-        System.out.println(radiologista.getConter());
-        System.out.println("cirurgiao " + cirurgiao.getNome());
-        System.out.println("~~~~~FIM~~~~~");
-
         if (radiologista.getIdVeterinario() != null) {
             txtNome.setText(radiologista.getNome());
             txtEndereco.setText(radiologista.getEndereco());
