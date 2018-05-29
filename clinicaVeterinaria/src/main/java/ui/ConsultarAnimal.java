@@ -240,8 +240,6 @@ public class ConsultarAnimal extends javax.swing.JInternalFrame {
             //Obtém o valor do ID da coluna "ID" da tabela de resultados
             Integer id = (Integer) tableConsultaAnimal.getValueAt(row, 0);
 
-            System.out.println("id cliente " + id);
-
             //com o ID da coluna, obtem o animal
             Animal animal = daoAnimal.obter(id);
 
@@ -278,15 +276,13 @@ public class ConsultarAnimal extends javax.swing.JInternalFrame {
             //Obtém o valor do ID da coluna "ID" da tabela de resultados
             Integer id = (Integer) tableConsultaAnimal.getValueAt(row, 0);
 
-            System.out.println("id cliente " + id);
-
             //com o ID da coluna, obtem o animal
             Animal animal = daoAnimal.obter(id);
 
             cadastroConsulta.dispose();
             cadastroConsulta = new CadastrarConsulta();
             cadastroConsulta.setAnimal(animal);
-            cadastroConsulta.setTitle(animal.getNome());
+            cadastroConsulta.setTitle("Registro Consulta " +animal.getNome());
             this.getParent().add(cadastroConsulta);
             this.openFrameInCenter(cadastroConsulta);
             cadastroConsulta.toFront();

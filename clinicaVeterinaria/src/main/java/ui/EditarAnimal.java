@@ -14,6 +14,11 @@ public class EditarAnimal extends javax.swing.JInternalFrame {
     //Armazena o animal em edição
     Animal animal = new Animal();
 
+    private DaoAnimal daoAnimal = new DaoAnimal();
+    private DaoCliente daoCliente = new DaoCliente();
+
+    private Cliente cliente = new Cliente();
+
     public EditarAnimal() {
         initComponents();
     }
@@ -167,11 +172,6 @@ public class EditarAnimal extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        DaoAnimal daoAnimal = new DaoAnimal();
-        DaoCliente daoCliente = new DaoCliente();
-
-        Animal animal = new Animal();
-        Cliente cliente = new Cliente();
 
         //busca os dados do cliente atraves do cpf
         try {
@@ -227,16 +227,24 @@ public class EditarAnimal extends javax.swing.JInternalFrame {
             e.printStackTrace();
         }
 
-        JOptionPane.showMessageDialog(rootPane, "Cliente atualizado com sucesso",
+        JOptionPane.showMessageDialog(rootPane, "Animal atualizado com sucesso",
                 "Cadastro atualizado", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_internalFrameOpened
+        try {
+            cliente = daoCliente.buscarPorId(animal.getIdCliente());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditarAnimal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditarAnimal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         txtNome.setText(animal.getNome());
         txtEspecie.setText(animal.getEspecie());
         txtIdade.setText(animal.getIdade().toString());
-        txtDonoCpf.setText(animal.getIdCliente().toString());
+        txtDonoCpf.setText(cliente.getCpf());
         if (animal.getSexo().equals("Macho")) {
             jrbMacho.setSelected(true);
         } else {

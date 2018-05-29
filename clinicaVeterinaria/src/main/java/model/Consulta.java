@@ -11,7 +11,7 @@ public class Consulta {
     private Date dataConsulta;
     private String relatoConsulta;
     private Integer idAnimal;
-
+    private String nomeVet;
 
     public Integer getIdConsulta() {
         return idConsulta;
@@ -51,5 +51,12 @@ public class Consulta {
         this.idAnimal = idAnimal;
     }
 
+    public String getNomeVet() {
+        return nomeVet;
+    }
+
+    public void setNomeVet(String nomeVet) {
+        this.nomeVet = nomeVet;
+    }
 
 }

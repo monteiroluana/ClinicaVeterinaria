@@ -2,13 +2,13 @@ package model;
 
 public class Radiologista extends Veterinario {
 
-    private Integer conter;
+    private String conter;
 
-    public Integer getConter() {
+    public String getConter() {
         return conter;
     }
 
-    public void setConter(Integer conter) {
+    public void setConter(String conter) {
         this.conter = conter;
     }
 

@@ -2,13 +2,13 @@ package model;
 
 public class CirurgiaoGeral extends Veterinario {
 
-    private Integer crm;
+    private String crm;
 
-    public Integer getCrm() {
+    public String getCrm() {
         return crm;
     }
 
-    public void setCrm(Integer crm) {
+    public void setCrm(String crm) {
         this.crm = crm;
     }
 

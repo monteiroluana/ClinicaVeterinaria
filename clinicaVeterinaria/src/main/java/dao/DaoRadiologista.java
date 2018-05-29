@@ -22,7 +22,7 @@ public class DaoRadiologista {
             stmt.setString(1, radiologista.getNome());
             stmt.setString(2, radiologista.getEndereco());
             stmt.setString(3, radiologista.getTelefone());
-            stmt.setInt(4, radiologista.getConter());
+            stmt.setString(4, radiologista.getConter());
             stmt.setBoolean(5, true);
 
             stmt.execute();
@@ -35,18 +35,20 @@ public class DaoRadiologista {
         }
     }
 
-    //lista todos os clientes ou por nome (ou parte do nome)
+    //lista todos os veterinários ou por nome (ou parte do nome)
     public List<Radiologista> listar(String busca) throws ClassNotFoundException, SQLException {
         List<Radiologista> lista = new ArrayList<Radiologista>();
 
-        String sql = "SELECT * FROM radiologista WHERE UPPER(nome) LIKE UPPER(?) AND enable=?";
+        String sql = "SELECT * FROM radiologista WHERE (UPPER(nome) LIKE UPPER(?) "
+                + "OR UPPER(conter) LIKE UPPER(?)) AND enable=?";
         Connection conn = null;
 
         try {
             conn = Conexao.obterConexao();
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, "%" + busca + "%");
-            stmt.setBoolean(2, true);
+            stmt.setString(2, busca);
+            stmt.setBoolean(3, true);
 
             //Armazenará os resultados do banco de dados
             ResultSet resultados = stmt.executeQuery();
@@ -57,7 +59,7 @@ public class DaoRadiologista {
                 radiologista.setNome(resultados.getString("nome"));
                 radiologista.setEndereco(resultados.getString("endereco"));
                 radiologista.setTelefone(resultados.getString("telefone"));
-                radiologista.setConter(resultados.getInt("conter"));
+                radiologista.setConter(resultados.getString("conter"));
                 lista.add(radiologista);
             }
         } catch (ClassNotFoundException | SQLException ex) {
@@ -102,7 +104,7 @@ public class DaoRadiologista {
             stmt.setString(1, radiologista.getNome());
             stmt.setString(2, radiologista.getEndereco());
             stmt.setString(3, radiologista.getTelefone());
-            stmt.setInt(4, radiologista.getConter());
+            stmt.setString(4, radiologista.getConter());
             stmt.setInt(5, radiologista.getIdVeterinario());
 
             stmt.execute();
@@ -113,5 +115,77 @@ public class DaoRadiologista {
         } finally {
             conn.close();
         }
+    }
+
+    public Radiologista obter(Integer id) throws SQLException, Exception {
+
+        String sql = "SELECT * FROM radiologista WHERE idRadiologista=? AND enable=?";
+
+        Connection conn = null;
+
+        try {
+            conn = Conexao.obterConexao();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1, id);
+            stmt.setBoolean(2, true);
+            stmt.execute();
+
+            //Armazenará os resultados do banco de dados
+            ResultSet resultado = stmt.executeQuery();
+
+            if (resultado.next()) {
+
+                Radiologista radiologista = new Radiologista();
+                radiologista.setIdVeterinario(id);
+                radiologista.setNome(resultado.getString("nome"));
+                radiologista.setConter(resultado.getString("conter"));
+                radiologista.setEndereco(resultado.getString("endereco"));
+                radiologista.setTelefone(resultado.getString("telefone"));
+
+                //Retorna o radiologista
+                return radiologista;
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+
+        } finally {
+            conn.close();
+        }
+
+        return null;
+    }
+    
+    public Radiologista buscarPorRegistro(String registro) throws ClassNotFoundException, SQLException {
+
+        String sql = "SELECT * FROM radiologista WHERE conter=? AND enable=?";
+
+        Radiologista radiologista = null;
+        Connection conn;
+
+        try {
+            conn = Conexao.obterConexao();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, registro);
+            stmt.setBoolean(2, true);
+            ResultSet res = stmt.executeQuery();
+
+            if (res.next()) {
+                radiologista = new Radiologista();
+
+                radiologista.setIdVeterinario(res.getInt("idCirurgiao"));
+                radiologista.setNome(res.getString("nome"));
+                radiologista.setConter(res.getString("conter"));
+                radiologista.setEndereco(res.getString("endereco"));
+                radiologista.setTelefone(res.getString("telefone"));
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return radiologista;
     }
 }
