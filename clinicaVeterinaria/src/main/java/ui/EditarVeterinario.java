@@ -18,7 +18,6 @@ public class EditarVeterinario extends javax.swing.JInternalFrame {
         initComponents();
     }
 
-
     public CirurgiaoGeral getCirurgiao() {
         return cirurgiao;
     }
@@ -26,8 +25,8 @@ public class EditarVeterinario extends javax.swing.JInternalFrame {
     public void setCirurgiao(CirurgiaoGeral cirurgiao) {
         this.cirurgiao = cirurgiao;
     }
-    
-     public Radiologista getRadiologista() {
+
+    public Radiologista getRadiologista() {
         return radiologista;
     }
 
@@ -183,7 +182,7 @@ public class EditarVeterinario extends javax.swing.JInternalFrame {
                         "Erro", JOptionPane.ERROR_MESSAGE);
             }
 
-        //Se for Radiologista
+            //Se for Radiologista
         } else {
             radiologista.setNome(txtNome.getText());
             radiologista.setEndereco(txtEndereco.getText());
@@ -223,13 +222,13 @@ public class EditarVeterinario extends javax.swing.JInternalFrame {
         System.out.println("cirurgiao " + cirurgiao.getNome());
         System.out.println("~~~~~FIM~~~~~");
 
-        if (cirurgiao == null) {
+        if (radiologista.getIdVeterinario() != null) {
             txtNome.setText(radiologista.getNome());
             txtEndereco.setText(radiologista.getEndereco());
             txtTelefone.setText(radiologista.getTelefone());
             txtRegistro.setText(radiologista.getConter());
             txtEspecialidade.setText("Radiologista");
-        } else {
+        } else if (cirurgiao.getIdVeterinario() != null) {
             txtNome.setText(cirurgiao.getNome());
             txtEndereco.setText(cirurgiao.getEndereco());
             txtTelefone.setText(cirurgiao.getTelefone());

@@ -282,7 +282,7 @@ public class ConsultarVeterinario extends javax.swing.JInternalFrame {
             if (comboEspecialidade.getSelectedItem().equals("Cirurgião Geral")) {
                 EditarVeterinario.setCirurgiao(cirurgiao);
                 EditarVeterinario.setTitle("Editar Cirurgião " + cirurgiao.getNome());
-            } else {
+            } else if(comboEspecialidade.getSelectedItem().equals("Radiologista")){
                 EditarVeterinario.setRadiologista(radiologista);
                 EditarVeterinario.setTitle("Editar Radiologista " + radiologista.getNome());
             }
